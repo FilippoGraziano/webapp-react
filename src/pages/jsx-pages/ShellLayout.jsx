@@ -1,10 +1,11 @@
+import "../css-pages/ShellLayout.css"
 import { NavLink, Outlet } from "react-router"
 
 const ShellLayout = () => {
 
     return (
 
-        <>
+        <div id="shell-layout">
 
             <header>
 
@@ -25,7 +26,7 @@ const ShellLayout = () => {
                 
             </main>
 
-        </>
+        </div>
     )
 
 }

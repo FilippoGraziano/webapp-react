@@ -1,3 +1,4 @@
+import "../css-pages/Abilities.css"
 
 const Abilities = () => {
 

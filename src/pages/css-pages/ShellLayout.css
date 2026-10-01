@@ -1,0 +1,24 @@
+#shell-layout {
+
+    header {
+
+        padding: 15px 20px;
+
+        nav {
+
+            a {
+                padding-right: 10px;
+                text-decoration: none;
+                color: black;
+                font-size: 20px;
+            }
+
+            a.active {
+                color: red;
+            }
+
+        }
+
+    }
+
+}

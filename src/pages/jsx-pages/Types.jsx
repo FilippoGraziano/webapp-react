@@ -1,3 +1,4 @@
+import "../css-pages/Types.css"
 
 const Types = () => {
 

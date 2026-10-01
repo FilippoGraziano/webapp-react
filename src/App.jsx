@@ -1,10 +1,11 @@
 import './App.css';
 import { Route, Routes } from 'react-router';
 import ShellLayout from './pages/jsx-pages/ShellLayout.jsx';
-import Pokemon from './pages/jsx-pages/Pokemon.jsx';
+import PokemonList from './pages/jsx-pages/PokemonList.jsx';
 import Types from './pages/jsx-pages/Types.jsx';
 import Moves from './pages/jsx-pages/Moves.jsx';
 import Abilities from './pages/jsx-pages/Abilities.jsx';
+import SinglePokemon from './pages/jsx-pages/SinglePokemon.jsx';
 
 const App = () => {
 
@@ -14,7 +15,8 @@ const App = () => {
 
       <Route element={<ShellLayout />} >
 
-        <Route index element={<Pokemon />} />
+        <Route path='/' element={<PokemonList />} />
+        <Route path='/:id' element={<SinglePokemon />} />
         <Route path='types' element={<Types />} />
         <Route path='moves' element={<Moves />} />
         <Route path='abilities' element={<Abilities />} />
