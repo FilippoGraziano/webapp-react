@@ -16,7 +16,7 @@ const App = () => {
       <Route element={<ShellLayout />} >
 
         <Route path='/' element={<PokemonList />} />
-        <Route path='/:id' element={<SinglePokemon />} />
+        <Route path='/:name' element={<SinglePokemon />} />
         <Route path='types' element={<Types />} />
         <Route path='moves' element={<Moves />} />
         <Route path='abilities' element={<Abilities />} />

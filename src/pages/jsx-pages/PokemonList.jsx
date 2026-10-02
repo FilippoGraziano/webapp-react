@@ -22,10 +22,10 @@ const Pokemon = () => {
                 <li className="pokemon-card" key={pok.id}>
 
                     <h2>{pok.name}</h2>
-                    <img src={`http://localhost:3000/pokemon-img/${pok.image}`} alt={pok.name} />
-                    <span className="generation">Generation: {pok.generation}</span>
-                    <span className="internationa-pokedex">International pokedex: {pok.n_international}</span>
-                    <Link to={`/${pok.id}`}> Dettagli </Link>
+                    <img src={`http://localhost:3000/pokemon-img/${pok.image}`} alt={`${pokemon.name}-img`} />
+                    <span className="generation">{pok.generation}° generation</span>
+                    <span className="internationa-pokedex">International pokedex: {pok.n_international}°</span>
+                    <Link to={`/${pok.name}`}> See more</Link>
                     
                 </li>
 
