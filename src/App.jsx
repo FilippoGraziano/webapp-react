@@ -6,6 +6,7 @@ import Types from './pages/jsx-pages/Types.jsx';
 import Moves from './pages/jsx-pages/Moves.jsx';
 import Abilities from './pages/jsx-pages/Abilities.jsx';
 import SinglePokemon from './pages/jsx-pages/SinglePokemon.jsx';
+import CreatePokemon from './pages/jsx-pages/CreatePokemon.jsx';
 
 const App = () => {
 
@@ -20,7 +21,8 @@ const App = () => {
         <Route path='types' element={<Types />} />
         <Route path='moves' element={<Moves />} />
         <Route path='abilities' element={<Abilities />} />
-
+        <Route path='createPokemon' element={<CreatePokemon />} />
+        
       </Route>
 
     </Routes>
