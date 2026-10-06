@@ -6,13 +6,14 @@ const formDataInit = {
     height: 0,
     weight: 0,
     n_international: 0,
-    generation: 0,
+    generation: ``,
     description: ``,
     male: 0,
     female: 0,
     evolution_level: null,
     evolution_stone: 0,
     evolution_trade: 0,
+    trade_item : ``,
     evolution_friendship: 0
 };
 
@@ -22,7 +23,9 @@ const CreatePokemon = () => {
 
     const handleFormData = e => {
         
-        const value = e.target.type === 'number' || 'select-one' ? e.target.valueAsNumber : e.target.value;
+        let value = e.target.value;
+
+        if (e.target.type === 'number' || e.target.type === 'select-one') value = Number(e.target.value)
 
         return setFormData({...formData, [e.target.name]: value });
 
@@ -42,25 +45,25 @@ const CreatePokemon = () => {
 
             <label>
                 Name:
-                <input type="text" name="name" value={formData.name} onChange={handleFormData}/>
+                <input required type="text" name="name" value={formData.name} onChange={handleFormData}/>
             </label>
 
             <label>
                 Height:
-                <input type="number" step={0.1} name="height" value={formData.height} onChange={handleFormData}/> m
+                <input required type="number" min={0.1} step={0.1} name="height" value={formData.height} onChange={handleFormData}/> m
             </label>
 
             <label name="weight">
                 Weight:
-                <input type="number" step={0.1} name="weight" value={formData.weight} onChange={handleFormData}/> Kg
+                <input required type="number" min={0.1} step={0.1} name="weight" value={formData.weight} onChange={handleFormData}/> Kg
             </label>
 
             <label>
                 International Pokedex:
-                <input type="number" name="n_international" value={formData.n_international} onChange={handleFormData}/>
+                <input required type="number" min={1} name="n_international" value={formData.n_international} onChange={handleFormData}/>
             </label>
 
-            <select name="generation" value={formData.generation} onChange={handleFormData}>
+            <select required name="generation" value={formData.generation} onChange={handleFormData}>
                 <option value="">Choose the pokemon generation</option>
                 <option value="1">1° Generation</option>
                 <option value="2">2° Generation</option>
@@ -75,17 +78,17 @@ const CreatePokemon = () => {
 
             <label>
                 Pokemon description:
-                <textarea name='description'  value={formData.description} onChange={handleFormData}/>
+                <textarea name='description' value={formData.description} onChange={handleFormData}/>
             </label>
 
             <label>
                 Male probability:
-                <input type="number" step={0.01} name="male" value={formData.male} onChange={handleFormData}/> %
+                <input required type="number" min={0} step={0.01} name="male" value={formData.male} onChange={handleFormData}/> %
             </label>
 
             <label name="female">
                 Female probability:
-                <input type="number" step={0.01} name="female" value={formData.female} onChange={handleFormData}/> %
+                <input required type="number" min={0} step={0.01} name="female" value={formData.female} onChange={handleFormData}/> %
             </label>
 
             {/* TODO image file input */}
