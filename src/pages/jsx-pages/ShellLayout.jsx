@@ -12,10 +12,10 @@ const ShellLayout = () => {
                 <nav>
 
                     <NavLink to='/' >Pokemon</NavLink>
-                    <NavLink to='types' >Types</NavLink>
-                    <NavLink to='moves' >Moves</NavLink>
-                    <NavLink to='abilities' >Abilities</NavLink>
-                    <NavLink to='createPokemon' >Add a Pokemon</NavLink>
+                    <NavLink to='/pokemon/types' >Types</NavLink>
+                    <NavLink to='/pokemon/moves' >Moves</NavLink>
+                    <NavLink to='/pokemon/abilities' >Abilities</NavLink>
+                    <NavLink to='/pokemon/createPokemon' >Add a Pokemon</NavLink>
                     
                 </nav>
 

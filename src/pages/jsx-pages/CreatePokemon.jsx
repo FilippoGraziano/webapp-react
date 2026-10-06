@@ -23,9 +23,7 @@ const CreatePokemon = () => {
 
     const handleFormData = e => {
         
-        let value = e.target.value;
-
-        if (e.target.type === 'number' || e.target.type === 'select-one') value = Number(e.target.value)
+        const value = e.target.type === 'number' || e.target.type === 'select-one' ? Number(e.target.value) : e.target.value;
 
         return setFormData({...formData, [e.target.name]: value });
 
