@@ -10,10 +10,11 @@ const formDataInit = {
     description: ``,
     male: 0,
     female: 0,
-    evolution_level: 0,
+    image: ``,
+    evolution_level: null,
     evolution_stone: 0,
     evolution_trade: 0,
-    trade_item : ``,
+    trade_item : null,
     evolution_friendship: 0
 };
 
@@ -40,7 +41,7 @@ const CreatePokemon = () => {
 
         if (evolutionForm.chooseEvolution === `friendship`) {
             setFormData({...formData, evolution_friendship: 1})
-        }
+        } else setFormData({...formData, evolution_friendship: 0})
 
     }, [evolutionForm.chooseEvolution])
 
@@ -104,7 +105,11 @@ const CreatePokemon = () => {
                 <input required type="number" min={0} step={0.01} name="female" value={formData.female} onChange={handleFormData}/> %
             </label>
 
-            {/* TODO image file input */}
+            {/* TODO: image file input */}
+            <label>
+                Choose the name of image file:
+                <input required type="text" name='image' value={formData.image} onChange={handleFormData} placeholder='ex. charmander.png' />
+            </label>
 
             <select required value={evolutionForm.chooseEvolution} onChange={e => setEvolutionForm({...evolutionForm , chooseEvolution: e.target.value})}>
                 <option disabled value="">Choose an evolution method</option>
