@@ -51,9 +51,15 @@ const SinglePokemon = () => {
             <p>Description: {pokemon.description}</p>
 
             {pokemon.evolution_level && <span className="level-evolution">Level evolution: {pokemon.evolution_level} </span>}
-            {pokemon.evolution_stone === 1 ? <span className="stone-evolution">It can evolve using an evolution stone </span> : undefined}
+            {pokemon.evolution_stone !== null ? <span className="stone-evolution">It can evolve using a {pokemon.evolution_stone} </span> : undefined}
             {pokemon.evolution_friendship === 1 ? <span className="friendship-evolution">It can evolve at max friendship</span> : undefined}
-            {pokemon.evolution_trade === 1 ? <span className="trade-evolution">It can evolve with a trade</span> : undefined}
+
+            {pokemon.trade_item !== null && pokemon.evolution_trade !== 0 ? 
+                <span className="trade-evolution">It can evolve with a trade holding {pokemon.trade_item}</span> : 
+                pokemon.evolution_trade === 1 ? 
+                <span className="trade-evolution">It can evolve with a trade</span> : 
+                undefined
+            }
 
             <span className="height">Height: {pokemon.height} m</span>
             <span className="weight">Weight: {pokemon.weight} Kg</span>
@@ -95,6 +101,25 @@ const SinglePokemon = () => {
                     <span>Speed: {pokemon.stats.speed}</span>
                 </>}
 
+            </section>
+
+            <h2>Regions</h2>
+            <section>
+                {pokemon.regions !== undefined && pokemon.regions.map(region => (
+
+                    <div key={region.id} className="single-move">
+
+                        <span>Regional number: {region.pokemon_n_regional}°</span>
+
+                        <span>Region name: {region.name}</span>
+
+                        <span>Game name: {region.game_name}</span>
+
+                        {region.regional_version !== 0 && <span>Have a regionl form</span>}
+
+                    </div>
+
+                ))}
             </section>
 
             <h2>Moves learning by level</h2>
