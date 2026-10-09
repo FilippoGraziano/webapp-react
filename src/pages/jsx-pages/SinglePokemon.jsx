@@ -50,15 +50,19 @@ const SinglePokemon = () => {
 
             <p>Description: {pokemon.description}</p>
 
-            {pokemon.evolution_level && <span className="level-evolution">Level evolution: {pokemon.evolution_level} </span>}
-            {pokemon.evolution_stone !== null ? <span className="stone-evolution">It can evolve using a {pokemon.evolution_stone} </span> : undefined}
-            {pokemon.evolution_friendship === 1 ? <span className="friendship-evolution">It can evolve at max friendship</span> : undefined}
-
-            {pokemon.trade_item !== null && pokemon.evolution_trade !== 0 ? 
-                <span className="trade-evolution">It can evolve with a trade holding {pokemon.trade_item}</span> : 
-                pokemon.evolution_trade === 1 ? 
-                <span className="trade-evolution">It can evolve with a trade</span> : 
-                undefined
+            {pokemon.evolution &&
+                <>
+                    <h2>Evolutions</h2>
+                    <section className="evolutions">
+                        <span className="evo-type">Type of evolution: by {pokemon.evolution.evo_type} </span>
+                        <span className="evo-method">{pokemon.evolution.evo_method}</span>
+                        {pokemon.evolution.item_name && <span className="evo-item">Item: {pokemon.evolution.item_name}</span>}
+                        <span className="evolved-pokemon">
+                            Evolve into: {pokemon.evolution.evo_name}
+                            <img src={`http://localhost:3000/pokemon-img/${pokemon.evolution.evo_image}`} alt={`${pokemon.evolution.evo_name}-img`} />
+                        </span>
+                    </section>
+                </>
             }
 
             <span className="height">Height: {pokemon.height} m</span>
