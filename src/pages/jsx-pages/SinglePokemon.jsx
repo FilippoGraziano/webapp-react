@@ -107,19 +107,20 @@ const SinglePokemon = () => {
 
             </section>
 
-            <h2>Regions</h2>
+            <h2>Games</h2>
             <section>
-                {pokemon.regions !== undefined && pokemon.regions.map(region => (
+                {pokemon.games !== undefined && pokemon.games.map(game => (
 
-                    <div key={region.id} className="single-move">
+                    <div key={game.id} className="single-move">
 
-                        <span>Regional number: {region.pokemon_n_regional}°</span>
+                        <span>Regional number: {game.pokemon_n_regional}°</span>
 
-                        <span>Region name: {region.name}</span>
+                        <span>Game name: {game.name}</span>
 
-                        <span>Game name: {region.game_name}</span>
+                        {game.region_2 !== undefined ? <span>Regions: {game.region} and {game.region_2}</span> : <span>Region: {game.region}</span>}
+                        {game.pokedex_zone && <span>Pokedex Zone: {game.pokedex_zone}</span>}
 
-                        {region.regional_version !== 0 && <span>Have a regionl form</span>}
+                        {game.regional_form !== 0 && <span>Has a regionl form</span>}
 
                     </div>
 
