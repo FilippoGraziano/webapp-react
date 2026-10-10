@@ -1,6 +1,7 @@
 import { use, useEffect, useState } from 'react';
 import '../css-pages/CreatePokemon.css'
 import axios from 'axios'
+import { useNavigate } from 'react-router';
 
 const formDataInit = {
     name: ``,
@@ -16,11 +17,13 @@ const formDataInit = {
 
 const CreatePokemon = () => {
 
+    const navigate = useNavigate()
+
     const [formData, setFormData] = useState(formDataInit);
 
     const handleFormData = e => {
         
-        let value = e.target.type === 'number' || e.target.type === 'select-one' ? Number(e.target.value) : e.target.value;
+        const value = e.target.type === 'number' || e.target.type === 'select-one' ? Number(e.target.value) : e.target.value;
 
         return setFormData({...formData, [e.target.name]: value });
 
@@ -32,7 +35,10 @@ const CreatePokemon = () => {
             e.preventDefault(),
             setFormData(formDataInit),
             axios.post(`http://localhost:3000/pokemon`, formData)
-                .then(res => console.log(res))
+                .then(res => (
+                    console.log(res), 
+                    navigate(`/pokemon/${res.data.id}`)
+                ))
                 .catch(err => console.error(err))
             )}>
 
@@ -91,6 +97,8 @@ const CreatePokemon = () => {
             </label>
 
             <button type='submit'>Submit</button>
+
+            
 
         </form>
 
