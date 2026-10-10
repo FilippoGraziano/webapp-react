@@ -108,7 +108,7 @@ const SinglePokemon = () => {
             </section>
 
             <h2>Games</h2>
-            <section>
+            <section className="games">
                 {pokemon.games !== undefined && pokemon.games.map(game => (
 
                     <div key={game.id} className="single-move">
