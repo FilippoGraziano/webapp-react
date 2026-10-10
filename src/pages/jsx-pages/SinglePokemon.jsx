@@ -111,7 +111,7 @@ const SinglePokemon = () => {
             <section className="games">
                 {pokemon.games !== undefined && pokemon.games.map(game => (
 
-                    <div key={game.id} className="single-move">
+                    <div key={game.id} className="single-game">
 
                         <span>Regional number: {game.pokemon_n_regional}°</span>
 
