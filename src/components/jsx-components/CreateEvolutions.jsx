@@ -48,18 +48,25 @@ const CreateEvolutions = props => {
                 <option value="trade">Trade</option>
             </select>
 
-            {formData.evo_type === `level` && <input name="evo_method" min={1} max={80} type="number" value={formData.evo_method} onChange={handleFormData} />}
+            {formData.evo_type === `level` &&
+                <label>
+                    Level:
+                    <input name="evo_method" min={1} max={80} type="number" value={formData.evo_method} onChange={handleFormData} />
+                </label>
+            }
 
             {formData.evo_type === `item` &&
 
-                <select name="" id="">
-                    <option value="">Select an item</option>
-                    {evoItem !== undefined && evoItem.map(item => (
+                <>
+                    <select name="item_id" value={formData.item_id} onChange={handleFormData}>
+                        <option value="">Select an item</option>
+                        {evoItem !== undefined && evoItem.map(item => (
 
-                        <option key={item.id} value={item.id}>{item.name}</option>
+                            <option key={item.id} value={item.id}>{item.name}</option>
 
-                    ))}
-                </select>
+                        ))}
+                    </select>
+                </>
 
             }
 
