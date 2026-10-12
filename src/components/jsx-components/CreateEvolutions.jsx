@@ -1,9 +1,9 @@
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import axios from "axios";
 import "../css-components/CreateEvolutions.css";
 
-const formdataInit = {
+const formDataInit = {
     evo_type: ``,
     item_id: 0,
     evo_method: ``,
@@ -12,15 +12,19 @@ const formdataInit = {
 
 const CreateEvolutions = props => {
 
-    const [formData, setFormData] = useState(formdataInit);
-    const [Item, setItem] = useState([])
+    const [formData, setFormData] = useState(formDataInit);
+    const [item, setItem] = useState([])
+    const [pokemon, setPokemon] = useState([])
 
     useEffect(() => {
         axios.get(`http://localhost:3000/items/`)
             .then(res => setItem(res.data))
             .catch(err => console.error(err));
+        axios.get(`http://localhost:3000/pokemon/`)
+            .then(res => setPokemon(res.data))
+            .catch(err => console.error(err));
     }, [])
-    const evoItem = Item.filter(item => item.type === `evolution`);
+    const evoItem = item.filter(item => item.type === `evolution`);
 
     const handleFormData = e => {
         const value = e.target.value;
@@ -33,7 +37,7 @@ const CreateEvolutions = props => {
 
             e.preventDefault(),
 
-            setFormData(formdataInit)
+            setFormData(formDataInit)
 
         )}>
 
@@ -60,7 +64,15 @@ const CreateEvolutions = props => {
             }
 
             {/* TODO: evo_method for trade */}
-            {/* TODO: a select that choose the evolved pokemon  */}
+
+            <select name="evo_pokemon_id" value={formData.evo_pokemon_id} onChange={handleFormData} >
+                <option value="" disabled>Choose the evolved pokemon</option>
+                {pokemon !== undefined && pokemon.map(pok => (
+
+                    <option key={pok.id} value={pok.id}>{pok.name}</option>
+
+                ))}
+            </select>
 
             <button type="submit">Submit</button>
 
