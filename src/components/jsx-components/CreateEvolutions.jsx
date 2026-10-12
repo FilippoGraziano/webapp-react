@@ -57,19 +57,18 @@ const CreateEvolutions = props => {
 
             {formData.evo_type === `item` &&
 
-                <>
-                    <select name="item_id" value={formData.item_id} onChange={handleFormData}>
-                        <option value="">Select an item</option>
-                        {evoItem !== undefined && evoItem.map(item => (
+                <select name="item_id" value={formData.item_id} onChange={handleFormData}>
+                    <option value="">Select an item</option>
+                    {evoItem !== undefined && evoItem.map(item => (
 
-                            <option key={item.id} value={item.id}>{item.name}</option>
+                        <option key={item.id} value={item.id}>{item.name}</option>
 
-                        ))}
-                    </select>
-                </>
+                    ))}
+                </select>
 
             }
 
+            {/* TODO: evo_method for item */}
             {/* TODO: evo_method for trade */}
 
             <select name="evo_pokemon_id" value={formData.evo_pokemon_id} onChange={handleFormData} >
