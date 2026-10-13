@@ -2,6 +2,7 @@ import "../css-components/CreateStats.css";
 
 const CreateStats = ({ pokemonId, formDataStats, setFormDataStats }) => {
 
+    const { tot_stats, ps, attack, defense, sp_attack, sp_defense, speed } = formDataStats;
 
     const handleFormData = e => {
         const value = e.target.valueAsNumber;
@@ -16,37 +17,37 @@ const CreateStats = ({ pokemonId, formDataStats, setFormDataStats }) => {
 
             <label>
                 Total stats:
-                <input required name="tot_stats" min={1} type="number" value={formDataStats.tot_stats} onChange={handleFormData} />
+                <input required name="tot_stats" min={1} type="number" value={tot_stats} onChange={handleFormData} />
             </label>
 
             <label>
                 Ps:
-                <input required name="ps" min={1} type="number" value={formDataStats.ps} onChange={handleFormData} />
+                <input required name="ps" min={1} type="number" value={ps} onChange={handleFormData} />
             </label>
 
             <label>
                 Attack:
-                <input required name="attack" min={1} type="number" value={formDataStats.attack} onChange={handleFormData} />
+                <input required name="attack" min={1} type="number" value={attack} onChange={handleFormData} />
             </label>
 
             <label>
                 Defense:
-                <input required name="defense" min={1} type="number" value={formDataStats.defense} onChange={handleFormData} />
+                <input required name="defense" min={1} type="number" value={defense} onChange={handleFormData} />
             </label>
 
             <label>
                 Special Attack:
-                <input required name="sp_attack" min={1} type="number" value={formDataStats.sp_attack} onChange={handleFormData} />
+                <input required name="sp_attack" min={1} type="number" value={sp_attack} onChange={handleFormData} />
             </label>
 
             <label>
                 Special Defense:
-                <input required name="sp_defense" min={1} type="number" value={formDataStats.sp_defense} onChange={handleFormData} />
+                <input required name="sp_defense" min={1} type="number" value={sp_defense} onChange={handleFormData} />
             </label>
 
             <label>
                 Speed:
-                <input required name="speed" min={1} type="number" value={formDataStats.speed} onChange={handleFormData} />
+                <input required name="speed" min={1} type="number" value={speed} onChange={handleFormData} />
             </label>
 
         </div>

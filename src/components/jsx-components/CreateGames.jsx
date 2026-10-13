@@ -4,6 +4,8 @@ import axios from "axios"
 
 const CreateGames = ({ pokemonId, formDataGames, setFormDataGames }) => {
 
+    const { game_id, pokemon_n_regional, pokedex_zone, regional_form } = formDataGames;
+
     const [games, setGames] = useState([]);
     const [zoneCheck, setZoneCheck] = useState(false);
 
@@ -29,7 +31,7 @@ const CreateGames = ({ pokemonId, formDataGames, setFormDataGames }) => {
 
             <h1>Add Games</h1>
 
-            <select required name="game_id" value={formDataGames.game_id} onChange={handleFormData} >
+            <select required name="game_id" value={game_id} onChange={handleFormData} >
                 <option value="">Choose a game</option>
                 {games !== undefined && games.map(game => (
 
@@ -40,7 +42,7 @@ const CreateGames = ({ pokemonId, formDataGames, setFormDataGames }) => {
 
             <label>
                 Regional pokedex number:
-                <input required type="number" name="pokemon_n_regional" min={1} value={formDataGames.pokemon_n_regional} onChange={handleFormData} />
+                <input required type="number" name="pokemon_n_regional" min={1} value={pokemon_n_regional} onChange={handleFormData} />
             </label>
 
             <label>
@@ -49,7 +51,7 @@ const CreateGames = ({ pokemonId, formDataGames, setFormDataGames }) => {
             </label>
 
             {zoneCheck &&
-                <select name="pokedex_zone" value={formDataGames.pokedex_zone} onChange={handleFormData} >
+                <select name="pokedex_zone" value={pokedex_zone} onChange={handleFormData} >
                     <option value="">Choose a pokedex zone</option>
                     <option value="central">Central</option>
                     <option value="mountain">Mountain</option>
@@ -63,7 +65,7 @@ const CreateGames = ({ pokemonId, formDataGames, setFormDataGames }) => {
 
             <label>
                 In this game, the pokemon has a regional form?
-                <input type="checkbox" name="regional_form" value={formDataGames.regional_form} onChange={handleFormData} />
+                <input type="checkbox" name="regional_form" checked={regional_form} onChange={handleFormData} />
             </label>
 
             {/* TODO: add possibility to insert more than one game */}

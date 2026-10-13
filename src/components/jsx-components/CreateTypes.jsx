@@ -4,6 +4,8 @@ import "../css-components/CreateTypes.css"
 
 const CreateTypes = ({ pokemonId, formDataTypes, setFormDataTypes }) => {
 
+    const { type_id } = formDataTypes;
+
     const [types, setTypes] = useState([]);
 
     useEffect(() => {
@@ -18,7 +20,7 @@ const CreateTypes = ({ pokemonId, formDataTypes, setFormDataTypes }) => {
 
             <h1>Add Type/Types</h1>
 
-            <select value={formDataTypes.type_id} onChange={e => setFormDataTypes({...formDataTypes, type_id: Number(e.target.value)})}>
+            <select value={type_id} onChange={e => setFormDataTypes({...formDataTypes, type_id: Number(e.target.value)})}>
                 <option value="">Choose the pokemon type</option>
                 {types !== undefined && types.map(type => (
 

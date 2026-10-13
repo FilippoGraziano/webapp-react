@@ -80,7 +80,7 @@ const CreatePokemonDetails = () => {
 
             <label>
                 Does this Pokémon have an evolution?
-                <input type="checkbox" value={hasEvolution} onChange={e => (setHasEvolution(!hasEvolution), setFormDataEvolution(formDataEvolutionInit))} />
+                <input type="checkbox" checked={hasEvolution} onChange={e => (setHasEvolution(!hasEvolution), setFormDataEvolution(formDataEvolutionInit))} />
             </label>
             { hasEvolution && <CreateEvolutions pokemonId={id} formDataEvolution={formDataEvolution} setFormDataEvolution={setFormDataEvolution} />}
 

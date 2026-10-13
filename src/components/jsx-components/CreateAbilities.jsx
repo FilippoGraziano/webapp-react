@@ -4,6 +4,8 @@ import axios from "axios";
 
 const CreateAbilities = ({ pokemonId, formDataAbilities, setFormDataAbilities }) => {
 
+    const { ability_id, primary_ability, secondary_ability, special_ability } = formDataAbilities;
+
     const [abilities, setAbilities] = useState([]);
 
     useEffect(() => {
@@ -12,14 +14,24 @@ const CreateAbilities = ({ pokemonId, formDataAbilities, setFormDataAbilities })
             .catch(err => console.error(err));
     }, [])
 
+    useEffect(() => {
+        if (primary_ability) return setFormDataAbilities({ ...formDataAbilities, secondary_ability: false, special_ability: false })
+    }, [primary_ability]);
+    useEffect(() => {
+        if (secondary_ability) return setFormDataAbilities({ ...formDataAbilities, primary_ability: false, special_ability: false })
+    }, [secondary_ability]);
+    useEffect(() => {
+        if (special_ability) return setFormDataAbilities({ ...formDataAbilities, secondary_ability: false, primary_ability: false })
+    }, [special_ability]);
+
     const abilityEffect = useMemo(() => {
 
-        const filteredAbility = abilities.filter(ab => ab.id === formDataAbilities.ability_id)[0];
+        const filteredAbility = abilities.filter(ab => ab.id === ability_id)[0];
 
         if (filteredAbility !== undefined) return filteredAbility.effect
 
         return;
-    }, [formDataAbilities.ability_id])
+    }, [ability_id])
 
     const handleFormData = e => {
         const value = e.target.type === `select-one` ?
@@ -36,7 +48,7 @@ const CreateAbilities = ({ pokemonId, formDataAbilities, setFormDataAbilities })
 
             <h1>Add abilities</h1>
 
-            <select required name="ability_id" value={formDataAbilities.ability_id} onChange={handleFormData}>
+            <select required name="ability_id" value={ability_id} onChange={handleFormData}>
                 <option value="">Choose an ability</option>
                 {abilities !== undefined && abilities.map(ab => (
 
@@ -46,7 +58,20 @@ const CreateAbilities = ({ pokemonId, formDataAbilities, setFormDataAbilities })
             </select>
             {abilityEffect !== undefined && <p>Effect: {abilityEffect}  </p>}
 
-            {/* TODO: selection fot he type of ability */}
+            <label>
+                primary:
+                <input type="checkbox" name="primary_ability" checked={primary_ability} onChange={handleFormData} />
+            </label>
+
+            <label>
+                secondary:
+                <input type="checkbox" name="secondary_ability" checked={secondary_ability} onChange={handleFormData} />
+            </label>
+
+            <label>
+                special:
+                <input type="checkbox" name="special_ability" checked={special_ability} onChange={handleFormData} />
+            </label>
 
         </div>
 

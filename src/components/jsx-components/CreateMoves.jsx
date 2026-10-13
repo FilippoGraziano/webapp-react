@@ -4,6 +4,8 @@ import "../css-components/CreateMoves.css";
 
 const CreateMoves = ({ pokemonId, formDataMoves, setFormDataMoves }) => {
 
+    const { move_id, learning_gen, learning_level, learning_egg, learning_move_tutor, learning_mt, learning_mn } = formDataMoves;
+
     const [moves, setMoves] = useState([]);
     const [learningLevel, setLearningLevel] = useState(false)
 
@@ -15,12 +17,12 @@ const CreateMoves = ({ pokemonId, formDataMoves, setFormDataMoves }) => {
 
     const moveEffect = useMemo(() => {
 
-        const filteredmove = moves.filter(ab => ab.id === formDataMoves.move_id)[0];
+        const filteredmove = moves.filter(ab => ab.id === move_id)[0];
 
         if (filteredmove !== undefined) return filteredmove.effect
 
         return;
-    }, [formDataMoves.move_id])
+    }, [move_id])
 
     const handleFormData = e => {
         const value = e.target.type === `select-one` || e.target.type === `number` ?
@@ -38,7 +40,7 @@ const CreateMoves = ({ pokemonId, formDataMoves, setFormDataMoves }) => {
 
             <h1>Add moves</h1>
 
-            <select name="move_id" value={formDataMoves.move_id} onChange={handleFormData} >
+            <select name="move_id" value={move_id} onChange={handleFormData} >
                 <option value="">Choose the move</option>
                 {moves !== undefined && moves.map(move => (
 
@@ -49,7 +51,7 @@ const CreateMoves = ({ pokemonId, formDataMoves, setFormDataMoves }) => {
             {moveEffect !== undefined && <p>Effect: {moveEffect}  </p>}
 
 
-            <select name="learning_gen" value={formDataMoves.learning_gen} onChange={handleFormData}>
+            <select name="learning_gen" value={learning_gen} onChange={handleFormData}>
                 <option value="">Choose a learning generation</option>
                 <option value="1">1° generation</option>
                 <option value="2">2° generation</option>
@@ -64,28 +66,28 @@ const CreateMoves = ({ pokemonId, formDataMoves, setFormDataMoves }) => {
 
             <label>
                 It learn the move by level?
-                <input type="checkbox" value={learningLevel} onChange={e => setLearningLevel(!learningLevel)} />
+                <input type="checkbox" checked={learningLevel} onChange={e => (setLearningLevel(!learningLevel), setFormDataMoves({...formDataMoves, learning_level: null}))} />
             </label>
-            {learningLevel && <input name="learning_level" type="number" min={1} max={100} value={formDataMoves.learning_level} onChange={handleFormData} />}
+            {learningLevel && <input name="learning_level" type="number" min={1} max={100} value={learning_level} onChange={handleFormData} />}
 
             <label>
                 It learn the move from the egg?
-                <input name="learning_egg" type="checkbox" value={formDataMoves.learning_egg} onChange={handleFormData} />
+                <input name="learning_egg" type="checkbox" checked={learning_egg} onChange={handleFormData} />
             </label>
 
             <label>
                 It learn the move by move tutor?
-                <input name="learning_move_tutor" type="checkbox" value={formDataMoves.learning_move_tutor} onChange={handleFormData} />
+                <input name="learning_move_tutor" type="checkbox" checked={learning_move_tutor} onChange={handleFormData} />
             </label>
 
             <label>
                 It learn the move by MT?
-                <input name="learning_mt" type="checkbox" value={formDataMoves.learning_mt} onChange={handleFormData} />
+                <input name="learning_mt" type="checkbox" checked={learning_mt} onChange={handleFormData} />
             </label>
 
             <label>
                 It learn the move by MN?
-                <input name="learning_mn" type="checkbox" value={formDataMoves.learning_mn} onChange={handleFormData} />
+                <input name="learning_mn" type="checkbox" checked={learning_mn} onChange={handleFormData} />
             </label>
 
             {/* TODO: add possibility to add more than one move */}

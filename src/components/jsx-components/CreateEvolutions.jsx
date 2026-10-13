@@ -5,7 +5,7 @@ import "../css-components/CreateEvolutions.css";
 
 const CreateEvolutions = ({ pokemonId, formDataEvolution, setFormDataEvolution }) => {
 
-    const { evo_type, item_id, evo_method, evo_pokemon_id } = formDataEvolution
+    const { evo_type, item_id, evo_method, evo_pokemon_id } = formDataEvolution;
 
     const [item, setItem] = useState([])
     const [pokemon, setPokemon] = useState([])
