@@ -6,7 +6,7 @@ import CreateAbilities from "../../components/jsx-components/CreateAbilities";
 import CreateTypes from "../../components/jsx-components/CreateTypes";
 import CreateGames from "../../components/jsx-components/CreateGames";
 import CreateMoves from "../../components/jsx-components/CreateMoves";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CreateEvolutions from "../../components/jsx-components/CreateEvolutions";
 
 const formDataEvolutionInit = {
@@ -49,6 +49,7 @@ const formDataMovesInit = {
 const CreatePokemonDetails = () => {
 
     const { id } = useParams()
+    const [hasEvolution, setHasEvolution] = useState(false)
     const [formDataEvolution, setFormDataEvolution] = useState(formDataEvolutionInit);
     const [formDataStats, setFormDataStats] = useState(formDataStatsInit);
     const [formDataAbilities, setFormDataAbilities] = useState(formDataAbilitiesInit);
@@ -56,16 +57,38 @@ const CreatePokemonDetails = () => {
     const [formDataGames, setFormDataGames] = useState(formDataGamesInit);
     const [formDataMoves, setFormDataMoves] = useState(formDataMovesInit);
 
+    useEffect(() => console.log(`Evolution`, formDataEvolution), [formDataEvolution]);
+    useEffect(() => console.log(`Stats`, formDataStats), [formDataStats]);
+    useEffect(() => console.log(`Abilities`, formDataAbilities), [formDataAbilities]);
+    
     return (
-        <>
-            {console.log(formDataEvolution)}
-            <CreateEvolutions pokemonId={id} formDataEvolutionInit={formDataEvolutionInit} formDataEvolution={formDataEvolution} setFormDataEvolution={setFormDataEvolution} />
-            {/* <CreateStats pokemonId={id} />
-            <CreateAbilities pokemonId={id} />
-            <CreateTypes pokemonId={id} />
-            <CreateGames pokemonId={id} />
-            <CreateMoves pokemonId={id} /> */}
-        </>
+        <form onSubmit={e => (
+            e.preventDefault(),
+            setFormDataEvolution(formDataEvolutionInit),
+            setFormDataStats(formDataStatsInit),
+            setFormDataAbilities(formDataAbilitiesInit),
+            setFormDataTypes(formDataTypesInit),
+            setFormDataGames(formDataGamesInit),
+            setFormDataMoves(formDataMovesInit)
+        )}>
+
+            <label>
+                The Pokemon has evolution?
+                <input type="checkbox" value={hasEvolution} onChange={e => setHasEvolution(!hasEvolution)} />
+            </label>
+            { hasEvolution && <CreateEvolutions pokemonId={id} formDataEvolution={formDataEvolution} setFormDataEvolution={setFormDataEvolution} />}
+
+            <CreateStats pokemonId={id} formDataStats={formDataStats} setFormDataStats={setFormDataStats} />
+
+            <CreateAbilities pokemonId={id} formDataAbilities={formDataAbilities} setFormDataAbilities={setFormDataAbilities} />
+
+            {/* <CreateTypes pokemonId={id} /> */}
+            {/* <CreateGames pokemonId={id} /> */}
+            {/* <CreateMoves pokemonId={id} /> */}
+
+            <button type="submit">Submit</button>
+
+        </form>
     );
 
 };

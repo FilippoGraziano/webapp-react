@@ -3,7 +3,7 @@ import { use, useEffect, useState } from "react";
 import axios from "axios";
 import "../css-components/CreateEvolutions.css";
 
-const CreateEvolutions = ({pokemonId, formDataEvolutionInit, formDataEvolution, setFormDataEvolution}) => {
+const CreateEvolutions = ({pokemonId, formDataEvolution, setFormDataEvolution}) => {
 
     const [item, setItem] = useState([])
     const [pokemon, setPokemon] = useState([])
@@ -25,13 +25,7 @@ const CreateEvolutions = ({pokemonId, formDataEvolutionInit, formDataEvolution, 
 
     return (
 
-        <form onSubmit={e => (
-
-            e.preventDefault(),
-
-            setFormDataEvolution(formDataEvolutionInit)
-
-        )}>
+        <div id="evolutions-data">
 
             <select required name="evo_type" value={formDataEvolution.evo_type} onChange={handleFormData}>
                 <option value="">Select the type of evolution</option>
@@ -72,9 +66,7 @@ const CreateEvolutions = ({pokemonId, formDataEvolutionInit, formDataEvolution, 
                 ))}
             </select>
 
-            <button type="submit">Submit</button>
-
-        </form>
+        </div>
 
     );
 
