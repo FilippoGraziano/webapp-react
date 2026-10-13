@@ -60,6 +60,7 @@ const CreatePokemonDetails = () => {
     useEffect(() => console.log(`Evolution`, formDataEvolution), [formDataEvolution]);
     useEffect(() => console.log(`Stats`, formDataStats), [formDataStats]);
     useEffect(() => console.log(`Abilities`, formDataAbilities), [formDataAbilities]);
+    useEffect(() => console.log(`Types`, formDataTypes), [formDataTypes]);
     
     return (
         <form onSubmit={e => (
@@ -82,7 +83,8 @@ const CreatePokemonDetails = () => {
 
             <CreateAbilities pokemonId={id} formDataAbilities={formDataAbilities} setFormDataAbilities={setFormDataAbilities} />
 
-            {/* <CreateTypes pokemonId={id} /> */}
+            <CreateTypes pokemonId={id} formDataTypes={formDataTypes} setFormDataTypes={setFormDataTypes} />
+
             {/* <CreateGames pokemonId={id} /> */}
             {/* <CreateMoves pokemonId={id} /> */}
 
