@@ -1,9 +1,11 @@
 
-import { use, useEffect, useState } from "react";
+import { use, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import "../css-components/CreateEvolutions.css";
 
-const CreateEvolutions = ({pokemonId, formDataEvolution, setFormDataEvolution}) => {
+const CreateEvolutions = ({ pokemonId, formDataEvolution, setFormDataEvolution }) => {
+
+    const { evo_type, item_id, evo_method, evo_pokemon_id } = formDataEvolution
 
     const [item, setItem] = useState([])
     const [pokemon, setPokemon] = useState([])
@@ -16,10 +18,17 @@ const CreateEvolutions = ({pokemonId, formDataEvolution, setFormDataEvolution}) 
             .then(res => setPokemon(res.data))
             .catch(err => console.error(err));
     }, [])
-    const evoItem = item.filter(item => item.type === `evolution`);
+
+    const evoItem = useMemo(() => item.filter(item => item.type === `evolution`), [item])
+    const [selectedItem] = useMemo(() => item.filter(item => item.id === item_id), [item_id])
+
+    useEffect(() => setFormDataEvolution({ ...formDataEvolution, evo_method: ``, item_id: 0 }), [evo_type])
+    useEffect(() => {
+        if (evo_type === `trade`) return setFormDataEvolution({ ...formDataEvolution, item_id: 0 })
+    }, [evo_method])
 
     const handleFormData = e => {
-        const value = e.target.value;
+        const value = e.target.name === `item_id` ? Number(e.target.value) : e.target.value;
         return setFormDataEvolution({ ...formDataEvolution, [e.target.name]: value });
     };
 
@@ -29,23 +38,31 @@ const CreateEvolutions = ({pokemonId, formDataEvolution, setFormDataEvolution}) 
 
             <h1>Add Evolution</h1>
 
-            <select required name="evo_type" value={formDataEvolution.evo_type} onChange={handleFormData}>
+            <select required name="evo_type" value={evo_type} onChange={handleFormData}>
                 <option value="">Select the type of evolution</option>
                 <option value="item">Item</option>
                 <option value="level">Level</option>
                 <option value="trade">Trade</option>
             </select>
 
-            {formDataEvolution.evo_type === `level` &&
+            {evo_type === `level` &&
                 <label>
                     Level:
-                    <input name="evo_method" min={1} max={80} type="number" value={formDataEvolution.evo_method} onChange={handleFormData} />
+                    <input name="evo_method" min={1} max={80} type="number" value={evo_method} onChange={handleFormData} />
                 </label>
             }
 
-            {formDataEvolution.evo_type === `item` &&
+            {evo_type === `trade` &&
+                <select name="evo_method" value={evo_method} onChange={handleFormData}>
+                    <option value="">Choose the trade method</option>
+                    <option value="trade">Trade</option>
+                    <option value="trade with item">Trade with item</option>
+                </select>
+            }
 
-                <select name="item_id" value={formDataEvolution.item_id} onChange={handleFormData}>
+            {(evo_type === `item` || evo_method === `trade with item`) &&
+
+                <select name="item_id" value={item_id} onChange={handleFormData}>
                     <option value="">Select an item</option>
                     {evoItem !== undefined && evoItem.map(item => (
 
@@ -56,10 +73,14 @@ const CreateEvolutions = ({pokemonId, formDataEvolution, setFormDataEvolution}) 
 
             }
 
-            {/* TODO: evo_method for item */}
-            {/* TODO: evo_method for trade */}
+            {evo_type === `item` &&
+                <select name="evo_method" value={evo_method} onChange={handleFormData} >
+                    <option value="">Choose the method with item</option>
+                    {selectedItem !== undefined && <option value={`Use ${selectedItem.name}`}>Using {selectedItem.name}</option>}
+                </select>
+            }
 
-            <select name="evo_pokemon_id" value={formDataEvolution.evo_pokemon_id} onChange={handleFormData} >
+            <select name="evo_pokemon_id" value={evo_pokemon_id} onChange={handleFormData} >
                 <option value="" disabled>Choose the evolved pokemon</option>
                 {pokemon !== undefined && pokemon.map(pok => (
 
