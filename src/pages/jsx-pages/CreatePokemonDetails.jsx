@@ -64,7 +64,7 @@ const CreatePokemonDetails = () => {
     return (
         <form onSubmit={e => (
             e.preventDefault(),
-            setFormDataEvolution(formDataEvolutionInit),
+            hasEvolution ? setFormDataEvolution(formDataEvolutionInit) : undefined,
             setFormDataStats(formDataStatsInit),
             setFormDataAbilities(formDataAbilitiesInit),
             setFormDataTypes(formDataTypesInit),
