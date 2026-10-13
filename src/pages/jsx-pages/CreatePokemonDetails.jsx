@@ -39,7 +39,7 @@ const formDataGamesInit = {
 const formDataMovesInit = {
     move_id: 0,
     learning_gen: 0,
-    learning_level: 0,
+    learning_level: null,
     learning_egg: false,
     learning_move_tutor:false,
     learning_mt: false,
@@ -61,6 +61,7 @@ const CreatePokemonDetails = () => {
     useEffect(() => console.log(`Stats`, formDataStats), [formDataStats]);
     useEffect(() => console.log(`Abilities`, formDataAbilities), [formDataAbilities]);
     useEffect(() => console.log(`Types`, formDataTypes), [formDataTypes]);
+    useEffect(() => console.log(`Moves`, formDataMoves), [formDataMoves]);
     
     return (
         <form onSubmit={e => (
@@ -86,7 +87,8 @@ const CreatePokemonDetails = () => {
             <CreateTypes pokemonId={id} formDataTypes={formDataTypes} setFormDataTypes={setFormDataTypes} />
 
             {/* <CreateGames pokemonId={id} /> */}
-            {/* <CreateMoves pokemonId={id} /> */}
+
+            <CreateMoves pokemonId={id} formDataMoves={formDataMoves} setFormDataMoves={setFormDataMoves} />
 
             <button type="submit">Submit</button>
 
