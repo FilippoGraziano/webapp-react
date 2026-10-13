@@ -1,12 +1,12 @@
 
 import { useParams } from "react-router";
+import { useEffect, useState } from "react";
 import "../css-pages/CreatePokemonDetails.css";
 import CreateStats from "../../components/jsx-components/CreateStats";
 import CreateAbilities from "../../components/jsx-components/CreateAbilities";
 import CreateTypes from "../../components/jsx-components/CreateTypes";
 import CreateGames from "../../components/jsx-components/CreateGames";
 import CreateMoves from "../../components/jsx-components/CreateMoves";
-import { useEffect, useState } from "react";
 import CreateEvolutions from "../../components/jsx-components/CreateEvolutions";
 
 const formDataEvolutionInit = {
@@ -34,7 +34,10 @@ const formDataTypesInit = {
     type_id: 0
 };
 const formDataGamesInit = {
-
+    game_id: 0,
+    pokemon_n_regional: 0,
+    pokedex_zone: null,
+    regional_form: false
 };
 const formDataMovesInit = {
     move_id: 0,
@@ -61,6 +64,7 @@ const CreatePokemonDetails = () => {
     useEffect(() => console.log(`Stats`, formDataStats), [formDataStats]);
     useEffect(() => console.log(`Abilities`, formDataAbilities), [formDataAbilities]);
     useEffect(() => console.log(`Types`, formDataTypes), [formDataTypes]);
+    useEffect(() => console.log(`games`, formDataGames), [formDataGames]);
     useEffect(() => console.log(`Moves`, formDataMoves), [formDataMoves]);
     
     return (
@@ -76,7 +80,7 @@ const CreatePokemonDetails = () => {
 
             <label>
                 Does this Pokémon have an evolution?
-                <input type="checkbox" value={hasEvolution} onChange={e => setHasEvolution(!hasEvolution)} />
+                <input type="checkbox" value={hasEvolution} onChange={e => (setHasEvolution(!hasEvolution), setFormDataEvolution(formDataEvolutionInit))} />
             </label>
             { hasEvolution && <CreateEvolutions pokemonId={id} formDataEvolution={formDataEvolution} setFormDataEvolution={setFormDataEvolution} />}
 
@@ -86,7 +90,7 @@ const CreatePokemonDetails = () => {
 
             <CreateTypes pokemonId={id} formDataTypes={formDataTypes} setFormDataTypes={setFormDataTypes} />
 
-            {/* <CreateGames pokemonId={id} /> */}
+            <CreateGames pokemonId={id} formDataGames={formDataGames} setFormDataGames={setFormDataGames} />
 
             <CreateMoves pokemonId={id} formDataMoves={formDataMoves} setFormDataMoves={setFormDataMoves} />
 
