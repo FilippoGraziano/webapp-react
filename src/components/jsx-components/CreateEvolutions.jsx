@@ -27,6 +27,8 @@ const CreateEvolutions = ({pokemonId, formDataEvolution, setFormDataEvolution}) 
 
         <div id="evolutions-data">
 
+            <h1>Add Evolution</h1>
+
             <select required name="evo_type" value={formDataEvolution.evo_type} onChange={handleFormData}>
                 <option value="">Select the type of evolution</option>
                 <option value="item">Item</option>

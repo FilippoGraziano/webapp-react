@@ -12,6 +12,8 @@ const CreateStats = ({ pokemonId, formDataStats, setFormDataStats }) => {
 
         <div id="stats-data">
 
+            <h1>Add Stats</h1>
+
             <label>
                 Total stats:
                 <input required name="tot_stats" min={1} type="number" value={formDataStats.tot_stats} onChange={handleFormData} />

@@ -16,6 +16,8 @@ const CreateTypes = ({ pokemonId, formDataTypes, setFormDataTypes }) => {
 
         <div id="types-data">
 
+            <h1>Add Type/Types</h1>
+
             <select value={formDataTypes.type_id} onChange={e => setFormDataTypes({...formDataTypes, type_id: Number(e.target.value)})}>
                 <option value="">Choose the pokemon type</option>
                 {types !== undefined && types.map(type => (

@@ -34,6 +34,8 @@ const CreateAbilities = ({ pokemonId, formDataAbilities, setFormDataAbilities })
 
         <div id="abilities-data">
 
+            <h1>Add abilities</h1>
+
             <select required name="ability_id" value={formDataAbilities.ability_id} onChange={handleFormData}>
                 <option value="">Choose an ability</option>
                 {abilities !== undefined && abilities.map(ab => (
