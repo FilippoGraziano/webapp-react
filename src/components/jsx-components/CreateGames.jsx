@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import "../css-components/CreateGames.css";
 import axios from "axios"
 
-const CreateGames = ({ pokemonId, formDataGames, setFormDataGames }) => {
+const CreateGames = ({ formDataGames, setFormDataGames }) => {
 
     const { game_id, pokemon_n_regional, pokedex_zone, regional_form } = formDataGames;
 

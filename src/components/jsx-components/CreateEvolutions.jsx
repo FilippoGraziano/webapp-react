@@ -3,7 +3,7 @@ import { use, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import "../css-components/CreateEvolutions.css";
 
-const CreateEvolutions = ({ pokemonId, formDataEvolution, setFormDataEvolution }) => {
+const CreateEvolutions = ({ formDataEvolution, setFormDataEvolution }) => {
 
     const { evo_type, item_id, evo_method, evo_pokemon_id } = formDataEvolution;
 

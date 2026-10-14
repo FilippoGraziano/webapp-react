@@ -1,6 +1,7 @@
 
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import "../css-pages/CreatePokemonDetails.css";
 import CreateStats from "../../components/jsx-components/CreateStats";
 import CreateAbilities from "../../components/jsx-components/CreateAbilities";
@@ -44,14 +45,14 @@ const formDataMovesInit = {
     learning_gen: 0,
     learning_level: null,
     learning_egg: false,
-    learning_move_tutor:false,
+    learning_move_tutor: false,
     learning_mt: false,
     learning_mn: false
 };
 
 const CreatePokemonDetails = () => {
 
-    const { id } = useParams()
+    const { pokemonId } = useParams()
     const [hasEvolution, setHasEvolution] = useState(false)
     const [formDataEvolution, setFormDataEvolution] = useState(formDataEvolutionInit);
     const [formDataStats, setFormDataStats] = useState(formDataStatsInit);
@@ -66,10 +67,15 @@ const CreatePokemonDetails = () => {
     useEffect(() => console.log(`Types`, formDataTypes), [formDataTypes]);
     useEffect(() => console.log(`games`, formDataGames), [formDataGames]);
     useEffect(() => console.log(`Moves`, formDataMoves), [formDataMoves]);
-    
+
     return (
         <form onSubmit={e => (
             e.preventDefault(),
+            hasEvolution ?
+                axios.post(`http://localhost:3000/pokemon/id/${pokemonId}/evolution`, formDataEvolution)
+                    .then(res => console.log(`Add evolution to pokemon with id: ${pokemonId}`, res.data))
+                    .catch(err => console.error(err)) : 
+                    undefined,
             hasEvolution ? setFormDataEvolution(formDataEvolutionInit) : undefined,
             setFormDataStats(formDataStatsInit),
             setFormDataAbilities(formDataAbilitiesInit),
@@ -82,17 +88,17 @@ const CreatePokemonDetails = () => {
                 Does this Pokémon have an evolution?
                 <input type="checkbox" checked={hasEvolution} onChange={e => (setHasEvolution(!hasEvolution), setFormDataEvolution(formDataEvolutionInit))} />
             </label>
-            { hasEvolution && <CreateEvolutions pokemonId={id} formDataEvolution={formDataEvolution} setFormDataEvolution={setFormDataEvolution} />}
+            {hasEvolution && <CreateEvolutions formDataEvolution={formDataEvolution} setFormDataEvolution={setFormDataEvolution} />}
 
-            <CreateStats pokemonId={id} formDataStats={formDataStats} setFormDataStats={setFormDataStats} />
+            <CreateStats formDataStats={formDataStats} setFormDataStats={setFormDataStats} />
 
-            <CreateAbilities pokemonId={id} formDataAbilities={formDataAbilities} setFormDataAbilities={setFormDataAbilities} />
+            <CreateAbilities formDataAbilities={formDataAbilities} setFormDataAbilities={setFormDataAbilities} />
 
-            <CreateTypes pokemonId={id} formDataTypes={formDataTypes} setFormDataTypes={setFormDataTypes} />
+            <CreateTypes formDataTypes={formDataTypes} setFormDataTypes={setFormDataTypes} />
 
-            <CreateGames pokemonId={id} formDataGames={formDataGames} setFormDataGames={setFormDataGames} />
+            <CreateGames formDataGames={formDataGames} setFormDataGames={setFormDataGames} />
 
-            <CreateMoves pokemonId={id} formDataMoves={formDataMoves} setFormDataMoves={setFormDataMoves} />
+            <CreateMoves formDataMoves={formDataMoves} setFormDataMoves={setFormDataMoves} />
 
             <button type="submit">Submit</button>
 

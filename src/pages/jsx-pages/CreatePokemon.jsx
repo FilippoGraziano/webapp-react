@@ -36,7 +36,7 @@ const CreatePokemon = () => {
             setFormData(formDataInit),
             axios.post(`http://localhost:3000/pokemon`, formData)
                 .then(res => (
-                    console.log(res), 
+                    console.log(`Created pokemon data:`, res.data), 
                     navigate(`/pokemon/${res.data.id}`)
                 ))
                 .catch(err => console.error(err))

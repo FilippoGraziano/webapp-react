@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import axios from "axios"
 import "../css-components/CreateMoves.css";
 
-const CreateMoves = ({ pokemonId, formDataMoves, setFormDataMoves }) => {
+const CreateMoves = ({ formDataMoves, setFormDataMoves }) => {
 
     const { move_id, learning_gen, learning_level, learning_egg, learning_move_tutor, learning_mt, learning_mn } = formDataMoves;
 

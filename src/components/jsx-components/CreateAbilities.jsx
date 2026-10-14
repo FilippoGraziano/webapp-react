@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import "../css-components/CreateAbilities.css";
 import axios from "axios";
 
-const CreateAbilities = ({ pokemonId, formDataAbilities, setFormDataAbilities }) => {
+const CreateAbilities = ({ formDataAbilities, setFormDataAbilities }) => {
 
     const { ability_id, primary_ability, secondary_ability, special_ability } = formDataAbilities;
 

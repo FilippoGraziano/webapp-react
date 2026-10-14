@@ -1,6 +1,6 @@
 import "../css-components/CreateStats.css";
 
-const CreateStats = ({ pokemonId, formDataStats, setFormDataStats }) => {
+const CreateStats = ({ formDataStats, setFormDataStats }) => {
 
     const { tot_stats, ps, attack, defense, sp_attack, sp_defense, speed } = formDataStats;
 

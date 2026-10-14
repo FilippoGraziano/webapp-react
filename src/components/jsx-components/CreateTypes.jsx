@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import "../css-components/CreateTypes.css"
 
-const CreateTypes = ({ pokemonId, formDataTypes, setFormDataTypes }) => {
+const CreateTypes = ({ formDataTypes, setFormDataTypes }) => {
 
     const { type_id } = formDataTypes;
 
