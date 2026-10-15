@@ -1,5 +1,5 @@
 
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../css-pages/CreatePokemonDetails.css";
@@ -56,6 +56,8 @@ const CreatePokemonDetails = () => {
     const { id } = useParams();
     const pokemonId = id;
 
+    const navigate = useNavigate();
+
     const [hasEvolution, setHasEvolution] = useState(false);
     const [formDataEvolution, setFormDataEvolution] = useState(formDataEvolutionInit);
     const [formDataStats, setFormDataStats] = useState(formDataStatsInit);
@@ -63,6 +65,13 @@ const CreatePokemonDetails = () => {
     const [formDataTypes, setFormDataTypes] = useState(formDataTypesInit);
     const [formDataGames, setFormDataGames] = useState(formDataGamesInit);
     const [formDataMoves, setFormDataMoves] = useState(formDataMovesInit);
+    const [pokemon, setPokemon] = useState([]);
+
+    useEffect(() => {
+        axios.get(`http://localhost:3000/pokemon/id/${pokemonId}`)
+            .then(res => setPokemon(res.data))
+            .catch(err => console.error(err));
+    }, [])
 
     useEffect(() => console.log(`Evolution`, formDataEvolution), [formDataEvolution]);
     useEffect(() => console.log(`Stats`, formDataStats), [formDataStats]);
@@ -72,42 +81,37 @@ const CreatePokemonDetails = () => {
     useEffect(() => console.log(`Moves`, formDataMoves), [formDataMoves]);
 
     return (
-        <form onSubmit={e => (
-            e.preventDefault(),
-            
-            hasEvolution ?
-                axios.post(`http://localhost:3000/pokemon/id/${pokemonId}/evolution`, formDataEvolution)
-                    .then(res => console.log(`Add evolution to pokemon with id: ${pokemonId}`, res.data))
-                    .catch(err => console.error(err)) :
-                undefined,
-            hasEvolution ? setFormDataEvolution(formDataEvolutionInit) : undefined,
+        <form onSubmit={async e => {
+            e.preventDefault();
 
-            axios.post(`http://localhost:3000/pokemon/id/${pokemonId}/stats`, formDataStats)
-                .then(res => console.log(`Add stats to pokemon with id: ${pokemonId}`, res.data))
-                .catch(err => console.error(err)),
-            setFormDataStats(formDataStatsInit),
+            try {
 
-            axios.post(`http://localhost:3000/pokemon/id/${pokemonId}/abilities`, formDataAbilities)
-                .then(res => console.log(`Add abilities to pokemon with id: ${pokemonId}`, res.data))
-                .catch(err => console.error(err)),
-            setFormDataAbilities(formDataAbilitiesInit),
+                let evoResponse;
+                hasEvolution ?
+                    evoResponse = await axios.post(`http://localhost:3000/pokemon/id/${pokemonId}/evolution`, formDataEvolution)
+                        .then(res => console.log(`Add evolution to pokemon with id: ${pokemonId}`, res.data)) :
+                    undefined;
 
-            axios.post(`http://localhost:3000/pokemon/id/${pokemonId}/types`, formDataTypes)
-                .then(res => console.log(`Add types to pokemon with id: ${pokemonId}`, res.data))
-                .catch(err => console.error(err)),
-            setFormDataTypes(formDataTypesInit),
+                const statsResponse = await axios.post(`http://localhost:3000/pokemon/id/${pokemonId}/stats`, formDataStats);
+                console.log(`Add stast to pokemon with id: ${pokemonId}`, statsResponse.data)
 
-            axios.post(`http://localhost:3000/pokemon/id/${pokemonId}/games`, formDataGames)
-                .then(res => console.log(`Add games to pokemon with id: ${pokemonId}`, res.data))
-                .catch(err => console.error(err)),
-            setFormDataGames(formDataGamesInit),
+                const abilitiesResponse = await axios.post(`http://localhost:3000/pokemon/id/${pokemonId}/abilities`, formDataAbilities);
+                console.log(`Add abilities to pokemon with id: ${pokemonId}`, abilitiesResponse.data)
 
-            axios.post(`http://localhost:3000/pokemon/id/${pokemonId}/moves`, formDataMoves)
-                .then(res => console.log(`Add moves to pokemon with id: ${pokemonId}`, res.data))
-                .catch(err => console.error(err)),
-            setFormDataMoves(formDataMovesInit)
+                const typesResponse = await axios.post(`http://localhost:3000/pokemon/id/${pokemonId}/types`, formDataTypes);
+                console.log(`Add types to pokemon with id: ${pokemonId}`, typesResponse.data)
 
-        )}>
+                const gamesResponse = await axios.post(`http://localhost:3000/pokemon/id/${pokemonId}/games`, formDataGames);
+                console.log(`Add games to pokemon with id: ${pokemonId}`, gamesResponse.data)
+
+                const movesResponse = await axios.post(`http://localhost:3000/pokemon/id/${pokemonId}/moves`, formDataMoves);
+                console.log(`Add moves to pokemon with id: ${pokemonId}`, movesResponse.data)
+
+            } catch (err) {
+                console.error(`questo è l'errore:`, err.response.data)
+            }
+
+        }}>
 
             <label>
                 Does this Pokémon have an evolution?
