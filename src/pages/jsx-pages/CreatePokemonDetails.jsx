@@ -32,7 +32,8 @@ const formDataAbilitiesInit = {
     special_ability: false
 };
 const formDataTypesInit = {
-    type_id: 0
+    type_id: 0,
+    type_id2: null
 };
 const formDataGamesInit = {
     game_id: 0,
