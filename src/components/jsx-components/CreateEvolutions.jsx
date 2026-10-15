@@ -28,7 +28,7 @@ const CreateEvolutions = ({ formDataEvolution, setFormDataEvolution }) => {
     }, [evo_method])
 
     const handleFormData = e => {
-        const value = e.target.name === `item_id` ? Number(e.target.value) : e.target.value;
+        const value = e.target.name === `item_id` || (e.target.name === `evo_method` && e.target.type === `number`) ? Number(e.target.value) : e.target.value;
         return setFormDataEvolution({ ...formDataEvolution, [e.target.name]: value });
     };
 
