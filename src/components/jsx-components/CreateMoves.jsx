@@ -40,7 +40,7 @@ const CreateMoves = ({ formDataMoves, setFormDataMoves }) => {
 
             <h1>Add moves</h1>
 
-            <select name="move_id" value={move_id} onChange={handleFormData} >
+            <select required name="move_id" value={move_id} onChange={handleFormData} >
                 <option value="">Choose the move</option>
                 {moves !== undefined && moves.map(move => (
 
@@ -51,7 +51,7 @@ const CreateMoves = ({ formDataMoves, setFormDataMoves }) => {
             {moveEffect !== undefined && <p>Effect: {moveEffect}  </p>}
 
 
-            <select name="learning_gen" value={learning_gen} onChange={handleFormData}>
+            <select required name="learning_gen" value={learning_gen} onChange={handleFormData}>
                 <option value="">Choose a learning generation</option>
                 <option value="1">1° generation</option>
                 <option value="2">2° generation</option>
@@ -62,13 +62,19 @@ const CreateMoves = ({ formDataMoves, setFormDataMoves }) => {
                 <option value="7">7° generation</option>
                 <option value="8">8° generation</option>
                 <option value="9">9° generation</option>
+                <option value="10">10° generation</option>
             </select>
 
             <label>
                 It learn the move by level?
-                <input type="checkbox" checked={learningLevel} onChange={e => (setLearningLevel(!learningLevel), setFormDataMoves({...formDataMoves, learning_level: null}))} />
+                <input type="checkbox" checked={learningLevel} onChange={e => (setLearningLevel(!learningLevel), setFormDataMoves({ ...formDataMoves, learning_level: null }))} />
             </label>
-            {learningLevel && <input name="learning_level" type="number" min={1} max={100} value={learning_level} onChange={handleFormData} />}
+            {learningLevel &&
+                <label>
+                    Level:
+                    <input required name="learning_level" type="number" min={1} max={100} value={learning_level} onChange={handleFormData} />
+                </label>
+            }
 
             <label>
                 It learn the move from the egg?

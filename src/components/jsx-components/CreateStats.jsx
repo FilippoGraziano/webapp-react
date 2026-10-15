@@ -17,37 +17,37 @@ const CreateStats = ({ formDataStats, setFormDataStats }) => {
 
             <label>
                 Total stats:
-                <input required name="tot_stats" min={1} type="number" value={tot_stats} onChange={handleFormData} />
+                <input required name="tot_stats" min={6} max={1530} type="number" value={tot_stats} onChange={handleFormData} />
             </label>
 
             <label>
                 Ps:
-                <input required name="ps" min={1} type="number" value={ps} onChange={handleFormData} />
+                <input required name="ps" min={1} max={255} type="number" value={ps} onChange={handleFormData} />
             </label>
 
             <label>
                 Attack:
-                <input required name="attack" min={1} type="number" value={attack} onChange={handleFormData} />
+                <input required name="attack" min={1} max={255} type="number" value={attack} onChange={handleFormData} />
             </label>
 
             <label>
                 Defense:
-                <input required name="defense" min={1} type="number" value={defense} onChange={handleFormData} />
+                <input required name="defense" min={1} max={255} type="number" value={defense} onChange={handleFormData} />
             </label>
 
             <label>
                 Special Attack:
-                <input required name="sp_attack" min={1} type="number" value={sp_attack} onChange={handleFormData} />
+                <input required name="sp_attack" min={1} max={255} type="number" value={sp_attack} onChange={handleFormData} />
             </label>
 
             <label>
                 Special Defense:
-                <input required name="sp_defense" min={1} type="number" value={sp_defense} onChange={handleFormData} />
+                <input required name="sp_defense" min={1} max={255} type="number" value={sp_defense} onChange={handleFormData} />
             </label>
 
             <label>
                 Speed:
-                <input required name="speed" min={1} type="number" value={speed} onChange={handleFormData} />
+                <input required name="speed" min={1} max={255} type="number" value={speed} onChange={handleFormData} />
             </label>
 
         </div>

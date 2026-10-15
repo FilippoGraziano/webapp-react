@@ -51,7 +51,7 @@ const CreateGames = ({ formDataGames, setFormDataGames }) => {
             </label>
 
             {zoneCheck &&
-                <select name="pokedex_zone" value={pokedex_zone} onChange={handleFormData} >
+                <select required name="pokedex_zone" value={pokedex_zone} onChange={handleFormData} >
                     <option value="">Choose a pokedex zone</option>
                     <option value="central">Central</option>
                     <option value="mountain">Mountain</option>
