@@ -73,6 +73,8 @@ const CreateAbilities = ({ formDataAbilities, setFormDataAbilities }) => {
                 <input type="checkbox" name="special_ability" checked={special_ability} onChange={handleFormData} />
             </label>
 
+            {/* TODO: add possibility to add more than 1 ability */}
+
         </div>
 
     );
