@@ -22,13 +22,17 @@ const CreateEvolutions = ({ formDataEvolution, setFormDataEvolution }) => {
     const evoItem = useMemo(() => item.filter(item => item.type === `evolution`), [item])
     const [selectedItem] = useMemo(() => item.filter(item => item.id === item_id), [item_id])
 
-    useEffect(() => setFormDataEvolution({ ...formDataEvolution, evo_method: ``, item_id: 0 }), [evo_type])
+    useEffect(() => setFormDataEvolution({ ...formDataEvolution, evo_method: ``, item_id: null }), [evo_type])
     useEffect(() => {
         if (evo_type === `trade`) return setFormDataEvolution({ ...formDataEvolution, item_id: 0 })
     }, [evo_method])
 
     const handleFormData = e => {
-        const value = e.target.name === `item_id` || (e.target.name === `evo_method` && e.target.type === `number`) ? Number(e.target.value) : e.target.value;
+        const value = e.target.name === `item_id` ||
+            (e.target.name === `evo_method` && e.target.type === `number`) || e.target.name === `evo_pokemon_id` ?
+                Number(e.target.value) :
+                e.target.value;
+
         return setFormDataEvolution({ ...formDataEvolution, [e.target.name]: value });
     };
 

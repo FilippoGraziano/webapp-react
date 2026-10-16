@@ -12,7 +12,7 @@ import CreateEvolutions from "../../components/jsx-components/CreateEvolutions";
 
 const formDataEvolutionInit = {
     evo_type: ``,
-    item_id: 0,
+    item_id: null,
     evo_method: ``,
     evo_pokemon_id: ``,
 };
@@ -65,6 +65,8 @@ const CreatePokemonDetails = () => {
     const [formDataTypes, setFormDataTypes] = useState(formDataTypesInit);
     const [formDataGames, setFormDataGames] = useState(formDataGamesInit);
     const [formDataMoves, setFormDataMoves] = useState(formDataMovesInit);
+    const [errorMessage, setErrorMessage] = useState(``);
+
     const [pokemon, setPokemon] = useState([]);
 
     useEffect(() => {
@@ -84,7 +86,10 @@ const CreatePokemonDetails = () => {
         <form onSubmit={async e => {
             e.preventDefault();
 
+            setErrorMessage(``);
             try {
+
+                console.log(`Inizio creazione dati...`);
 
                 let evoResponse;
                 hasEvolution ?
@@ -108,7 +113,33 @@ const CreatePokemonDetails = () => {
                 console.log(`Add moves to pokemon with id: ${pokemonId}`, movesResponse.data)
 
             } catch (err) {
-                console.error(`questo è l'errore:`, err.response.data)
+                setErrorMessage(err.response.data.message);
+                console.error(`errore trovato:`, err.response.data.message);
+
+                console.log(`Cancellazione di tutti i dati creati, a causa dell'errore...`);
+
+                hasEvolution ?
+                    (axios.delete(`http://localhost:3000/pokemon/id/${pokemonId}/evolution`),
+                        console.log(`evolution rimossa`)) :
+                    console.log(`non c'è evolution`);
+
+                axios.delete(`http://localhost:3000/pokemon/id/${pokemonId}/stats`);
+                console.log(`stats rimosse`);
+
+                axios.delete(`http://localhost:3000/pokemon/id/${pokemonId}/abilities`);
+                console.log(`abilities rimosse`);
+
+                axios.delete(`http://localhost:3000/pokemon/id/${pokemonId}/types`);
+                console.log(`types rimosse`);
+
+                axios.delete(`http://localhost:3000/pokemon/id/${pokemonId}/games`);
+                console.log(`games rimosse`);
+
+                axios.delete(`http://localhost:3000/pokemon/id/${pokemonId}/moves`);
+                console.log(`moves rimosse`);
+
+                console.log(`Dati rimossi e pronti ad essere ricreati`)
+
             }
 
         }}>
