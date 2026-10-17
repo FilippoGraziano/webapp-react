@@ -83,7 +83,7 @@ const CreatePokemonDetails = () => {
     useEffect(() => console.log(`Moves`, formDataMoves), [formDataMoves]);
 
     return (
-        <form onSubmit={async e => {
+        <form id="create-pokemon-details" onSubmit={async e => {
             e.preventDefault();
 
             setErrorMessage(``);
@@ -112,37 +112,45 @@ const CreatePokemonDetails = () => {
                 const movesResponse = await axios.post(`http://localhost:3000/pokemon/id/${pokemonId}/moves`, formDataMoves);
                 console.log(`Add moves to pokemon with id: ${pokemonId}`, movesResponse.data)
 
+                navigate(`/${pokemon.name}`);
+
             } catch (err) {
                 setErrorMessage(err.response.data.message);
                 console.error(`errore trovato:`, err.response.data.message);
 
-                console.log(`Cancellazione di tutti i dati creati, a causa dell'errore...`);
+                console.log(`Cancellation of all created data due to the error...`);
 
                 hasEvolution ?
                     (axios.delete(`http://localhost:3000/pokemon/id/${pokemonId}/evolution`),
                         console.log(`evolution rimossa`)) :
-                    console.log(`non c'è evolution`);
+                    console.log(`ther isn't evolution`);
 
                 axios.delete(`http://localhost:3000/pokemon/id/${pokemonId}/stats`);
-                console.log(`stats rimosse`);
+                console.log(`stats removed`);
 
                 axios.delete(`http://localhost:3000/pokemon/id/${pokemonId}/abilities`);
-                console.log(`abilities rimosse`);
+                console.log(`abilities removed`);
 
                 axios.delete(`http://localhost:3000/pokemon/id/${pokemonId}/types`);
-                console.log(`types rimosse`);
+                console.log(`types removed`);
 
                 axios.delete(`http://localhost:3000/pokemon/id/${pokemonId}/games`);
-                console.log(`games rimosse`);
+                console.log(`games removed`);
 
                 axios.delete(`http://localhost:3000/pokemon/id/${pokemonId}/moves`);
-                console.log(`moves rimosse`);
+                console.log(`moves removed`);
 
-                console.log(`Dati rimossi e pronti ad essere ricreati`)
+                console.log(`Data removed and ready to be recreated`)
 
             }
 
         }}>
+
+            {errorMessage !== `` &&
+                <div className="error-message">
+                    Error: {errorMessage}
+                </div>
+            }
 
             <label>
                 Does this Pokémon have an evolution?
