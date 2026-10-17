@@ -19,7 +19,7 @@ const Pokemon = () => {
 
             {pokemon.map(pok => (
 
-                <li className="pokemon-card" key={pok.id}>
+                <li className="pokemon-card" data-status={pok.name} key={pok.id}>
 
                     <Link to={`/${pok.name}`}>
 
@@ -27,9 +27,11 @@ const Pokemon = () => {
 
                         <img src={`http://localhost:3000/pokemon-img/${pok.image}`} alt={`${pokemon.name}-img`} />
 
-                        <span className="types">{console.log(pok.type)}</span>
-
                     </Link>
+
+                    <span className="types">
+                        {pok.types.length === 2 ? `${pok.types[0]}/${pok.types[1]}` : pok.types[0]}
+                    </span>
 
                 </li>
 

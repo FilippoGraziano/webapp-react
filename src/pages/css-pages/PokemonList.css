@@ -2,14 +2,16 @@
 
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
     flex-wrap: wrap;
     list-style: none;
     padding: 30px 15px;
 
     .pokemon-card {
 
-        flex-basis: calc((100% / 4) - 10px);
+        text-align: center;
+        flex-basis: calc((100% / 4) - 20px);
+
         h3 {
             margin-bottom: 5px;
         }
@@ -18,19 +20,59 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: space-between;
             text-decoration: none;
             color: black;
+            height: 130px;
         }
 
         img {
             width: 90px;
             display: block;
+            object-fit: cover;
         }
 
-        span {
+        .types{
             display: block;
+            margin-top: 10px;
         }
 
+    }
+
+    [data-status="Growlithe"]{
+        img {
+            width: 65px;
+        }
+    }
+    [data-status="Marowak"]{
+        img {
+            width: 70px;
+        }
+    }
+    [data-status="Dragonair"]{
+        img {
+            width: 70px;
+        }
+    }
+    [data-status="Hitmonchan"]{
+        img {
+            width: 70px;
+        }
+    }
+    [data-status="Moltres"]{
+        img {
+            width: 110px;
+        }
+    }
+    [data-status="Zapdos"]{
+        img {
+            width: 110px;
+        }
+    }
+    [data-status="Dragonite"]{
+        img {
+            width: 110px;
+        }
     }
 
 }
