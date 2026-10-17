@@ -12,7 +12,7 @@ const Pokemon = () => {
             .then(res => setPokemon(res.data))
             .catch(err => console.error(`pokemon error`, err));
     }, [])
-    
+
     return (
 
         <ul id="pokemon-list">
@@ -21,12 +21,16 @@ const Pokemon = () => {
 
                 <li className="pokemon-card" key={pok.id}>
 
-                    <h2>{pok.name}</h2>
-                    <img src={`http://localhost:3000/pokemon-img/${pok.image}`} alt={`${pokemon.name}-img`} />
-                    <span className="generation">{pok.generation}° generation</span>
-                    <span className="internationa-pokedex">International pokedex: {pok.n_international}°</span>
-                    <Link to={`/${pok.name}`}> See more</Link>
-                    
+                    <Link to={`/${pok.name}`}>
+
+                        <h3>{pok.name}</h3>
+
+                        <img src={`http://localhost:3000/pokemon-img/${pok.image}`} alt={`${pokemon.name}-img`} />
+
+                        <span className="types">{console.log(pok.type)}</span>
+
+                    </Link>
+
                 </li>
 
             ))}
