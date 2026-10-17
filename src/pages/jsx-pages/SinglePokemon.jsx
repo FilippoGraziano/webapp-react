@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import "../css-pages/SinglePokemon.css";
 import { useEffect, useState } from "react";
 import axios from 'axios';
@@ -7,6 +7,7 @@ const SinglePokemon = () => {
 
     const [pokemon, setPokemon] = useState({})
     const { name } = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -25,6 +26,17 @@ const SinglePokemon = () => {
         movesByMt = pokemon.moves.filter(move => move.mt)
         movesByMn = pokemon.moves.filter(move => move.mn)
     }
+
+
+    if (pokemon.evolution === undefined && pokemon.stats === undefined &&
+        (pokemon.abilities !== undefined && pokemon.abilities.length === 0)
+        &&
+        (pokemon.types !== undefined && pokemon.types.length === 0)
+        &&
+        (pokemon.games !== undefined && pokemon.games.length === 0)
+        &&
+        (pokemon.moves !== undefined && pokemon.moves.length === 0)) sessionStorage.setItem('canAccessSuccess', 'true');
+
 
     return (
         <div className="pokemon-detail">
@@ -198,6 +210,17 @@ const SinglePokemon = () => {
                 ))}
 
             </section>
+
+            {pokemon.evolution === undefined && pokemon.stats === undefined &&
+                (pokemon.abilities !== undefined && pokemon.abilities.length === 0)
+                &&
+                (pokemon.types !== undefined && pokemon.types.length === 0)
+                &&
+                (pokemon.games !== undefined && pokemon.games.length === 0)
+                &&
+                (pokemon.moves !== undefined && pokemon.moves.length === 0) ?
+                <button onClick={() => navigate(`/pokemon/${pokemon.id}`)}>Add the detail for the Pokemon</button> : undefined
+            }
 
         </div>
     )

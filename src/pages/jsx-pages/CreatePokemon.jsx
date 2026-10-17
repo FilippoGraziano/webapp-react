@@ -20,46 +20,54 @@ const CreatePokemon = () => {
     const navigate = useNavigate()
 
     const [formData, setFormData] = useState(formDataInit);
+    const [errorMessage, setErrorMessage] = useState(``);
 
     const handleFormData = e => {
-        
+
         const value = e.target.type === 'number' || e.target.type === 'select-one' ? Number(e.target.value) : e.target.value;
 
-        return setFormData({...formData, [e.target.name]: value });
+        return setFormData({ ...formData, [e.target.name]: value });
 
     };
 
     return (
 
         <form id='create-pokemon' onSubmit={e => (
+
             e.preventDefault(),
-            setFormData(formDataInit),
+
+            sessionStorage.setItem('canAccessSuccess', 'true'),
+
             axios.post(`http://localhost:3000/pokemon`, formData)
                 .then(res => (
-                    console.log(`Created pokemon data:`, res.data), 
+                    console.log(`Created pokemon data:`, res.data),
                     navigate(`/pokemon/${res.data.id}`)
                 ))
-                .catch(err => console.error(err))
-            )}>
+                .catch(err => setErrorMessage(err.response.data.message))
 
+        )}>
+
+            {errorMessage !== `` &&
+                <div className="error-message">Error: {errorMessage}</div>
+            }
             <label>
                 Name:
-                <input required type="text" name="name" value={formData.name} onChange={handleFormData}/>
+                <input required type="text" name="name" value={formData.name} onChange={handleFormData} />
             </label>
 
             <label>
                 Height:
-                <input required type="number" min={0.1} step={0.1} name="height" value={formData.height} onChange={handleFormData}/> m
+                <input required type="number" min={0.1} step={0.1} name="height" value={formData.height} onChange={handleFormData} /> m
             </label>
 
             <label name="weight">
                 Weight:
-                <input required type="number" min={0.1} step={0.1} name="weight" value={formData.weight} onChange={handleFormData}/> Kg
+                <input required type="number" min={0.1} step={0.1} name="weight" value={formData.weight} onChange={handleFormData} /> Kg
             </label>
 
             <label>
                 International Pokedex:
-                <input required type="number" min={1} name="n_international" value={formData.n_international} onChange={handleFormData}/>
+                <input required type="number" min={1} name="n_international" value={formData.n_international} onChange={handleFormData} />
             </label>
 
             <select required name="generation" value={formData.generation} onChange={handleFormData}>
@@ -77,17 +85,17 @@ const CreatePokemon = () => {
 
             <label>
                 Pokemon description:
-                <textarea name='description' value={formData.description} onChange={handleFormData}/>
+                <textarea name='description' value={formData.description} onChange={handleFormData} />
             </label>
 
             <label>
                 Male probability:
-                <input required type="number" min={0} step={0.01} name="male" value={formData.male} onChange={handleFormData}/> %
+                <input required type="number" min={0} step={0.01} name="male" value={formData.male} onChange={handleFormData} /> %
             </label>
 
             <label name="female">
                 Female probability:
-                <input required type="number" min={0} step={0.01} name="female" value={formData.female} onChange={handleFormData}/> %
+                <input required type="number" min={0} step={0.01} name="female" value={formData.female} onChange={handleFormData} /> %
             </label>
 
             {/* TODO: image file input */}
@@ -98,7 +106,7 @@ const CreatePokemon = () => {
 
             <button type='submit'>Submit</button>
 
-            
+
 
         </form>
 

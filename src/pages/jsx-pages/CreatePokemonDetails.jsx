@@ -1,6 +1,6 @@
 
 import { useNavigate, useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import axios from "axios";
 import "../css-pages/CreatePokemonDetails.css";
 import CreateStats from "../../components/jsx-components/CreateStats";
@@ -58,13 +58,36 @@ const CreatePokemonDetails = () => {
 
     const navigate = useNavigate();
 
+    const [isAuthorized, setIsAuthorized] = useState(null)
+
+    useEffect(() => {
+
+        const access = sessionStorage.getItem('canAccessSuccess');
+
+        if (access === `true`) {
+
+            setIsAuthorized(true);
+
+            setTimeout(() => {
+                sessionStorage.removeItem('canAccessSuccess');
+                console.log("Biglietto usato e rimosso subito dopo l'ingresso!");
+            }, 50);
+
+        } else setIsAuthorized(false);
+
+        // return () => {sessionStorage.removeItem('canAccessSuccess')};
+
+    }, []);
+
     const [hasEvolution, setHasEvolution] = useState(false);
+
     const [formDataEvolution, setFormDataEvolution] = useState(formDataEvolutionInit);
     const [formDataStats, setFormDataStats] = useState(formDataStatsInit);
     const [formDataAbilities, setFormDataAbilities] = useState(formDataAbilitiesInit);
     const [formDataTypes, setFormDataTypes] = useState(formDataTypesInit);
     const [formDataGames, setFormDataGames] = useState(formDataGamesInit);
     const [formDataMoves, setFormDataMoves] = useState(formDataMovesInit);
+
     const [errorMessage, setErrorMessage] = useState(``);
 
     const [pokemon, setPokemon] = useState([]);
@@ -82,8 +105,10 @@ const CreatePokemonDetails = () => {
     useEffect(() => console.log(`games`, formDataGames), [formDataGames]);
     useEffect(() => console.log(`Moves`, formDataMoves), [formDataMoves]);
 
+    if (isAuthorized === null) return null;
     return (
-        <form id="create-pokemon-details" onSubmit={async e => {
+
+        isAuthorized ? <form id="create-pokemon-details" onSubmit={async e => {
             e.preventDefault();
 
             setErrorMessage(``);
@@ -170,7 +195,8 @@ const CreatePokemonDetails = () => {
 
             <button type="submit">Submit</button>
 
-        </form>
+        </form> : <div>You're unathorized</div>
+
     );
 
 };
