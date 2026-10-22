@@ -1,0 +1,287 @@
+/* Fire */
+.typeFire {
+    color: red;
+}
+#pokemon-list .borderFire:hover {
+    border-color: red;
+}
+#pokemon-list .border-leftFire:hover {
+    border-top-color: red;
+    border-left-color: red;
+}
+#pokemon-list .border-rightFire:hover {
+    border-bottom-color: red;
+    border-right-color: red;
+}
+
+/* Grass */
+.typeGrass {
+    color: rgb(0, 194, 0);
+}
+#pokemon-list .borderGrass:hover {
+    border-color: rgb(0, 194, 0);
+}
+#pokemon-list .border-leftGrass:hover {
+    border-top-color: rgb(0, 194, 0);
+    border-left-color: rgb(0, 194, 0);
+}
+#pokemon-list .border-rightGrass:hover {
+    border-bottom-color: rgb(0, 194, 0);
+    border-right-color: rgb(0, 194, 0);
+}
+
+/* Poison */
+.typePoison {
+    color: rgb(185, 0, 185);
+}
+#pokemon-list .borderPoison:hover {
+    border-color: rgb(185, 0, 185);
+}
+#pokemon-list .border-leftPoison:hover {
+    border-top-color: rgb(185, 0, 185);
+    border-left-color: rgb(185, 0, 185);
+}
+#pokemon-list .border-rightPoison:hover {
+    border-bottom-color: rgb(185, 0, 185);
+    border-right-color: rgb(185, 0, 185);
+}
+
+/* Water */
+.typeWater {
+    color: #0553B7;
+}
+#pokemon-list .borderWater:hover {
+    border-color: #0553B7;
+}
+#pokemon-list .border-leftWater:hover {
+    border-top-color: #0553B7;
+    border-left-color: #0553B7;
+}
+#pokemon-list .border-rightWater:hover {
+    border-bottom-color: #0553B7;
+    border-right-color: #0553B7;
+}
+
+/* Flying */
+.typeFlying {
+    color: #77B1E8;
+}
+#pokemon-list .borderFlying:hover {
+    border-color: #77B1E8;
+}
+#pokemon-list .border-leftFlying:hover {
+    border-top-color: #77B1E8;
+    border-left-color: #77B1E8;
+}
+#pokemon-list .border-rightFlying:hover {
+    border-bottom-color: #77B1E8;
+    border-right-color: #77B1E8;
+}
+
+/* Dark */
+.typeDark {
+    color: black;
+}
+#pokemon-list .borderDark:hover {
+    border-color: black;
+}
+#pokemon-list .border-leftDark:hover {
+    border-top-color: black;
+    border-left-color: black;
+}
+#pokemon-list .border-rightDark:hover {
+    border-bottom-color: black;
+    border-right-color: black;
+}
+
+/* Ghost */
+.typeGhost {
+    color: purple;
+}
+#pokemon-list .borderGhost:hover {
+    border-color: purple;
+}
+#pokemon-list .border-leftGhost:hover {
+    border-top-color: purple;
+    border-left-color: purple;
+}
+#pokemon-list .border-rightGhost:hover {
+    border-bottom-color: purple;
+    border-right-color: purple;
+}
+
+/* Bug */
+.typeBug {
+    color: #8fff00;
+}
+#pokemon-list .borderBug:hover {
+    border-color: #8fff00;
+}
+#pokemon-list .border-leftBug:hover {
+    border-top-color: #8fff00;
+    border-left-color: #8fff00;
+}
+#pokemon-list .border-rightBug:hover {
+    border-bottom-color: #8fff00;
+    border-right-color: #8fff00;
+}
+
+/* Normal */
+.typeNormal {
+    color: rgb(129 129 129);
+}
+#pokemon-list .borderNormal:hover {
+    border-color: rgb(129 129 129);
+}
+#pokemon-list .border-leftNormal:hover {
+    border-top-color: rgb(129 129 129);
+    border-left-color: rgb(129 129 129);
+}
+#pokemon-list .border-rightNormal:hover {
+    border-bottom-color: rgb(129 129 129);
+    border-right-color: rgb(129 129 129);
+}
+
+/* Ground */
+.typeGround {
+    color: rgb(158, 104, 42);
+}
+#pokemon-list .borderGround:hover {
+    border-color: rgb(158, 104, 42);
+}
+#pokemon-list .border-leftGround:hover {
+    border-top-color: rgb(158, 104, 42);
+    border-left-color: rgb(158, 104, 42);
+}
+#pokemon-list .border-rightGround:hover {
+    border-bottom-color: rgb(158, 104, 42);
+    border-right-color: rgb(158, 104, 42);
+}
+
+/* Electric */
+.typeElectric {
+    color: rgb(255, 200, 0);
+}
+#pokemon-list .borderElectric:hover {
+    border-color: rgb(255, 200, 0);
+}
+#pokemon-list .border-leftElectric:hover {
+    border-top-color: rgb(255, 200, 0);
+    border-left-color: rgb(255, 200, 0);
+}
+#pokemon-list .border-rightElectric:hover {
+    border-bottom-color: rgb(255, 200, 0);
+    border-right-color: rgb(255, 200, 0);
+}
+
+/* Fairy */
+.typeFairy {
+    color: rgb(248, 175, 187);
+}
+#pokemon-list .borderFairy:hover {
+    border-color: rgb(248, 175, 187);
+}
+#pokemon-list .border-leftFairy:hover {
+    border-top-color: rgb(248, 175, 187);
+    border-left-color: rgb(248, 175, 187);
+}
+#pokemon-list .border-rightFairy:hover {
+    border-bottom-color: rgb(248, 175, 187);
+    border-right-color: rgb(248, 175, 187);
+}
+
+/* Fighting */
+.typeFighting {
+    color: rgb(255, 119, 0);
+}
+#pokemon-list .borderFighting:hover {
+    border-color: rgb(255, 119, 0);
+}
+#pokemon-list .border-leftFighting:hover {
+    border-top-color: rgb(255, 119, 0);
+    border-left-color: rgb(255, 119, 0);
+}
+#pokemon-list .border-rightFighting:hover {
+    border-bottom-color: rgb(255, 119, 0);
+    border-right-color: rgb(255, 119, 0);
+}
+
+/* Dragon */
+.typeDragon {
+    color: #1B2BA9;
+}
+#pokemon-list .borderDragon:hover {
+    border-color: #1B2BA9;
+}
+#pokemon-list .border-leftDragon:hover {
+    border-top-color: #1B2BA9;
+    border-left-color: #1B2BA9;
+}
+#pokemon-list .border-rightDragon:hover {
+    border-bottom-color: #1B2BA9;
+    border-right-color: #1B2BA9;
+}
+
+/* Psychic */
+.typePsychic {
+    color: rgb(255, 100, 126);
+}
+#pokemon-list .borderPsychic:hover {
+    border-color: rgb(255, 100, 126);
+}
+#pokemon-list .border-leftPsychic:hover {
+    border-top-color: rgb(255, 100, 126);
+    border-left-color: rgb(255, 100, 126);
+}
+#pokemon-list .border-rightPsychic:hover {
+    border-bottom-color: rgb(255, 100, 126);
+    border-right-color: rgb(255, 100, 126);
+}
+
+/* Rock */
+.typeRock {
+    color: rgb(255 192 118);
+}
+#pokemon-list .borderRock:hover {
+    border-color: rgb(255 192 118);
+}
+#pokemon-list .border-leftRock:hover {
+    border-top-color: rgb(255 192 118);
+    border-left-color: rgb(255 192 118);
+}
+#pokemon-list .border-rightRock:hover {
+    border-bottom-color: rgb(255 192 118);
+    border-right-color: rgb(255 192 118);
+}
+
+/* Steel */
+.typeSteel {
+    color: rgb(191 191 191);
+}
+#pokemon-list .borderSteel:hover {
+    border-color: rgb(191 191 191);
+}
+#pokemon-list .border-leftSteel:hover {
+    border-top-color: rgb(191 191 191);
+    border-left-color: rgb(191 191 191);
+}
+#pokemon-list .border-rightSteel:hover {
+    border-bottom-color: rgb(191 191 191);
+    border-right-color: rgb(191 191 191);
+}
+
+/* Ice */
+.typeIce {
+    color: rgb(0, 183, 255);
+}
+#pokemon-list .borderIce:hover {
+    border-color: rgb(0, 183, 255);
+}
+#pokemon-list .border-leftIce:hover {
+    border-top-color: rgb(0, 183, 255);
+    border-left-color: rgb(0, 183, 255);
+}
+#pokemon-list .border-rightIce:hover {
+    border-bottom-color: rgb(0, 183, 255);
+    border-right-color: rgb(0, 183, 255);
+}

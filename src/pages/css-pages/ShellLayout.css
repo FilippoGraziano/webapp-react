@@ -1,3 +1,5 @@
+@import url("../../index.css");
+
 #shell-layout {
 
     header {
@@ -9,7 +11,7 @@
             a {
                 padding-right: 10px;
                 text-decoration: none;
-                color: black;
+                color: var(--text-primary-color);
                 font-size: 20px;
             }
 

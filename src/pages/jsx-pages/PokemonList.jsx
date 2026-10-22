@@ -1,4 +1,5 @@
 import "../css-pages/PokemonList.css"
+import "../../pokemonTypes.css"
 import { useEffect, useState } from "react"
 import axios from 'axios'
 import { Link } from "react-router"
@@ -19,7 +20,12 @@ const Pokemon = () => {
 
             {pokemon.map(pok => (
 
-                <li className="pokemon-card" data-status={pok.name} key={pok.id}>
+                <li className={pok.types.length === 2 ?
+                    `pokemon-card border-left${pok.types[0]} border-right${pok.types[1]}` :
+                    `pokemon-card border${pok.types[0]}`
+                }
+                    data-status={pok.name} key={pok.id}
+                >
 
                     <Link to={`/${pok.name}`}>
 
@@ -29,9 +35,20 @@ const Pokemon = () => {
 
                     </Link>
 
-                    <span className="types">
-                        {pok.types.length === 2 ? `${pok.types[0]}/${pok.types[1]}` : pok.types[0]}
-                    </span>
+                    {pok.types.length === 2 ?
+                        <>
+                            <span className={`type${pok.types[0]}`}>
+                                {pok.types[0]}
+                            </span>
+                            /
+                            <span className={`type${pok.types[1]}`}>
+                                {pok.types[1]}
+                            </span>
+                        </> :
+                        <span className={`type${pok.types[0]}`}>
+                            {pok.types[0]}
+                        </span>
+                    }
 
                 </li>
 
