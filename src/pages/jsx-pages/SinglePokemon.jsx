@@ -71,7 +71,7 @@ const SinglePokemon = () => {
                         {pokemon.evolution.item_name && <span className="evo-item">Item: {pokemon.evolution.item_name}</span>}
                         <span className="evolved-pokemon">
                             Evolve into: {pokemon.evolution.evo_name}
-                            <img src={`http://localhost:3000/pokemon-img/${pokemon.evolution.evo_image}`} alt={`${pokemon.evolution.evo_name}-img`} />
+                            <img src={`http://localhost:3000/sprites-master/sprites/pokemon/${pokemon.evolution.evo_pokedex_num}.png`} alt={`${pokemon.evolution.evo_name}-img`} />
                         </span>
                     </section>
                 </>
