@@ -43,7 +43,6 @@ const SinglePokemon = () => {
 
             <h1>{pokemon.name}</h1>
 
-            <span className="regional-pokedex">Kanto pokedex: {pokemon.n_regional}°</span>
             <span className="international-pokedex">International pokedex: {pokemon.n_international}°</span>
             <span className="generation">{pokemon.generation}° generation</span>
 
