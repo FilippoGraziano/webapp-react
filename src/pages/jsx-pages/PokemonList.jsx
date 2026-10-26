@@ -31,7 +31,7 @@ const Pokemon = () => {
 
                         <h3>{pok.name}</h3>
 
-                        <img src={`http://localhost:3000/pokemon-img/${pok.image}`} alt={`${pokemon.name}-img`} />
+                        <img src={`http://localhost:3000/sprites-master/sprites/pokemon/${pok.n_international}.png`} alt={`${pokemon.name}-img`} />
 
                     </Link>
 

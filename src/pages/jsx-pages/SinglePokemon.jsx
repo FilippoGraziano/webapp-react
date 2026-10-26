@@ -47,7 +47,7 @@ const SinglePokemon = () => {
             <span className="international-pokedex">International pokedex: {pokemon.n_international}°</span>
             <span className="generation">{pokemon.generation}° generation</span>
 
-            <img src={`http://localhost:3000/pokemon-img/${pokemon.image}`} alt={`${pokemon.name}-img`} />
+            <img src={`http://localhost:3000/sprites-master/sprites/pokemon/${pokemon.n_international}.png`} alt={`${pokemon.name}-img`} />
 
             <h2>Type</h2>
             <section className="types">
